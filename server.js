@@ -46,6 +46,9 @@ app.get("/reservation", function(req, res) {
 
 app.get("/view", function(req, res) {
   res.sendFile(path.join(__dirname, "view.html"));
+});
+
+app.get("/view/all", function(req, res) {
   return res.json(bothtablesandwaitlist);
 });
 
