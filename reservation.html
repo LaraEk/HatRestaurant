@@ -78,4 +78,28 @@
     
     </body>
     </html>
+
+
     
+    
+    <script type="text/javascript">
+      $(".submit").on("click", function () {
+    
+        var newReservation = {
+          customerName: $('#reserve_name').val().trim(),
+          phoneNumber: $('#reserve_phone').val().trim(),
+          customerEmail: $('#reserve_email').val().trim(),
+          customerID: $('#reserve_uniqueID').val().trim()
+        };
+    
+        console.log(newReservation);
+    
+        var currentURL = window.location.origin;
+    
+        $.post("/api/tables", newReservation)
+        .then(function (data) {alert(data)})
+          
+
+    
+      });
+    </script>
