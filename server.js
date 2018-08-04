@@ -81,6 +81,7 @@ app.get("/api/tables/:alltables", function(req, res) {
 app.post("/api/tables", function(req, res) {
   // req.body hosts is equal to the JSON post sent from the user
   // This works because of our body-parser middleware
+
   var newreservation = req.body;
 
   // Using a RegEx Pattern to remove spaces from newCharacter
@@ -91,10 +92,10 @@ app.post("/api/tables", function(req, res) {
 
   if (tables.length < 5) {
   tables.push(newreservation);
-  res.json("Congratulations!  You have earned yourself a table in the Incredibly Exclusive Hat Restuarant!");
+  return res.json("Congratulations!  You have earned yourself a table in the Incredibly Exclusive Hat Restuarant!");
   } else {
   waitlist.push(newreservation);
-  res.json("Oh, no!  You have not been deemed worthy of a table in the Incredibly Exclusive Hat Restuarant!  But we've put you on the waitlist as a consolation prize :)");
+  return res.json("Oh, no!  You have not been deemed worthy of a table in the Incredibly Exclusive Hat Restuarant!  But we've put you on the waitlist as a consolation prize :)");
   }
 
 
