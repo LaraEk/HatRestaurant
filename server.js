@@ -18,14 +18,20 @@ app.use(bodyParser.json());
 var tables = [
       {
     routeName: "madmax",
-    name: "Mad Max",
-    phone_number: "555-555-5555",
-    email: "mad@max.com",
-    unique_id: "5"
+    customerName: "Mad Max",
+    phoneNumber: "555-555-5555",
+    customerEmail: "mad@max.com",
+    customerID: "5"
   }
 ];
 
 var waitlist = [];
+
+var bothtablesandwaitlist = {
+  tables: tables, 
+  waitlist: waitlist
+};
+
 // Routes
 // =============================================================
 
@@ -40,16 +46,17 @@ app.get("/reservation", function(req, res) {
 
 app.get("/view", function(req, res) {
   res.sendFile(path.join(__dirname, "view.html"));
+  return res.json(bothtablesandwaitlist);
 });
 
 // Displays all reservations
 app.get("/api/tables", function(req, res) {
-  return res.json(tables);
+  return res.json(bothtablesandwaitlist.tables);
 });
 
 // Displays all reservations
 app.get("/api/waitlist", function(req, res) {
-  return res.json(waitlist);
+  return res.json(bothtablesandwaitlist.waitlist);
 });
 
 // Displays a single character, or returns false
@@ -75,7 +82,7 @@ app.post("/api/tables", function(req, res) {
 
   // Using a RegEx Pattern to remove spaces from newCharacter
   // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-  newreservation.routeName = newreservation.name.replace(/\s+/g, "").toLowerCase();
+  newreservation.routeName = newreservation.customerName.replace(/\s+/g, "").toLowerCase();
 
   console.log(newreservation);
 
