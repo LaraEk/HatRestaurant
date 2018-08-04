@@ -52,20 +52,20 @@ app.get("/api/waitlist", function(req, res) {
   return res.json(waitlist);
 });
 
-// // Displays a single character, or returns false
-// app.get("/api/characters/:character", function(req, res) {
-//   var chosen = req.params.character;
+// Displays a single character, or returns false
+app.get("/api/tables/:alltables", function(req, res) {
+  var showalltables = req.params.alltables;
 
-//   console.log(chosen);
+  console.log(showalltables);
 
-//   for (var i = 0; i < characters.length; i++) {
-//     if (chosen === characters[i].routeName) {
-//       return res.json(characters[i]);
-//     }
-//   }
+  for (var i = 0; i < tables.length; i++) {
+    if (showalltables === tables[i].routeName) {
+      return res.json(tables[i]);
+    }
+  }
 
-//   return res.json(false);
-// });
+  return res.json(false);
+});
 
 // Create New Characters - takes in JSON input
 app.post("/api/tables", function(req, res) {
