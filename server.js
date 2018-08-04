@@ -25,6 +25,7 @@ var tables = [
   }
 ];
 
+var waitlist = [];
 // Routes
 // =============================================================
 
@@ -44,6 +45,11 @@ app.get("/view", function(req, res) {
 // Displays all reservations
 app.get("/api/tables", function(req, res) {
   return res.json(tables);
+});
+
+// Displays all reservations
+app.get("/api/waitlist", function(req, res) {
+  return res.json(waitlist);
 });
 
 // // Displays a single character, or returns false
@@ -73,9 +79,15 @@ app.post("/api/tables", function(req, res) {
 
   console.log(newreservation);
 
+  if (tables.length < 5) {
   tables.push(newreservation);
+  res.json("Congratulations!  You have earned yourself a table in the Incredibly Exclusive Hat Restuarant!");
+  } else {
+  waitlist.push(newreservation);
+  res.json("Oh, no!  You have not been deemed worthy of a table in the Incredibly Exclusive Hat Restuarant!  But we've put you on the waitlist as a consolation prize :)");
+  }
 
-  res.json(newreservation);
+
 });
 
 // Starts the server to begin listening
